@@ -1,0 +1,8 @@
+.main-container {
+  height: 100vh;
+  position: relative;
+  >div:first-of-type{
+    height: 100%;
+    position: relative;
+  }
+}
