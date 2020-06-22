@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { Redirect } from 'react-router-dom';
-import SecurityLayout from '../layouts/SecurityLayout'
+import SecurityLayout from '@/layouts/SecurityLayout'
 
 const suspenseComponent = Component => props => (
   <Suspense fallback={<div>加载中...</div>}>
@@ -11,7 +11,7 @@ const suspenseComponent = Component => props => (
 export default [
   {
     path: '/login',
-    component: suspenseComponent(lazy(() => import('../pages/User/Login')))
+    component: suspenseComponent(lazy(() => import('@/pages/User/Login')))
   },
   {
     path: '/',
@@ -24,11 +24,11 @@ export default [
       },
       {
         path: '/home',
-        component: suspenseComponent(lazy(() => import('../pages/Home')))
+        component: suspenseComponent(lazy(() => import('@/pages/Home')))
       },
       {
         path: '/recommend',
-        component: suspenseComponent(lazy(() => import('../pages/Recommend')))
+        component: suspenseComponent(lazy(() => import('@/pages/Recommend')))
       },
     ]
   },
