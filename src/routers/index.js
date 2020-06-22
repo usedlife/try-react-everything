@@ -30,6 +30,9 @@ export default [
         path: '/recommend',
         component: suspenseComponent(lazy(() => import('@/pages/Recommend')))
       },
+      {
+        component: suspenseComponent(lazy(() => import('@/pages/404')))
+      },
     ]
   },
 ]
