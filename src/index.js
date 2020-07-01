@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker'
 import FastClick from 'fastclick'
 // 全局样式
 import './styles/global.scss'
-import './utils/theme'
+// import './utils/theme'
 
 // 处理300ms点击延迟
 FastClick.attach(document.body)

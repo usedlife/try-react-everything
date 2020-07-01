@@ -17,6 +17,6 @@ function StoreProvider(props) {
   )
 }
 
-export { useCtx as useStoreContext }
+export { useCtx as useStore }
 
 export default StoreProvider

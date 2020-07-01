@@ -1,8 +1,11 @@
 import React from 'react'
-import { useStoreContext } from '@/layouts/StoreProvider'
+import { useStore } from '@/layouts/StoreProvider'
+import { useTheme } from '@/layouts/ThemeProvider';
 
 export default () => {
-  const { state, dispatch } = useStoreContext()
+  const { state, dispatch } = useStore()
+  const { changeTheme } = useTheme()
+
   const _add = () => {
     dispatch({
       type: 'a/asyncSetCount',
@@ -15,6 +18,9 @@ export default () => {
     <div>
       <span style={{margin: 10}}>{state.a.count}</span>
       <button onClick={_add}>+</button>
+      <div>
+        <button onClick={changeTheme}>更换主题</button>
+      </div>
     </div>
   )
 }
