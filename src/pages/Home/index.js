@@ -4,7 +4,7 @@ import { useTheme } from '@/layouts/ThemeProvider';
 
 export default () => {
   const { state, dispatch } = useStore()
-  const { changeTheme } = useTheme()
+  const { changeTheme, theme } = useTheme()
 
   const _add = () => {
     dispatch({
@@ -15,11 +15,42 @@ export default () => {
     })
   }
   return (
-    <div>
-      <span style={{margin: 10}}>{state.a.count}</span>
-      <button onClick={_add}>+</button>
+    <div style={{padding: '10px'}}>
+      <input 
+        value={state.a.count} 
+        style={{
+          background: theme.bg,
+          color: theme.color1,
+          padding: '4px 10px',
+          border: `1px solid ${theme.border}`,
+          outline: 'none',
+          borderRadius: '4px'
+        }}
+      />
+      <button 
+        onClick={_add}
+        style={{
+          color: theme.bg, 
+          background: theme.accent, 
+          borderRadius: '4px',
+          outline: 'none',
+          border: 0,
+          padding: '4px 8px',
+          marginLeft: '10px'
+        }}
+      >+</button>
       <div>
-        <button onClick={changeTheme}>更换主题</button>
+        <button 
+          onClick={changeTheme} 
+          style={{
+            color: theme.bg, 
+            background: theme.accent, 
+            borderRadius: '4px',
+            outline: 'none',
+            border: 0,
+            padding: '4px 8px',
+          }}
+        >更换主题</button>
       </div>
     </div>
   )

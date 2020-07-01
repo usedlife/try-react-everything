@@ -18,6 +18,18 @@ function ThemeProvider(props) {
   }, [themeType])
 
   useEffect(() => {
+    const themeListener = event => {
+      if (event.matches) {
+        setThemeType(ThemeType.DARK)
+      } else {
+        setThemeType(ThemeType.LIGHT)
+      }
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', themeListener)
+    return () => window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', themeListener)
+  }, [])
+
+  useEffect(() => {
     writeNewStyle(theme[themeType])
   }, [themeType])
 
