@@ -1,6 +1,6 @@
 import React from 'react'
-import { useStore } from '@/layouts/StoreProvider'
-import { useTheme } from '@/layouts/ThemeProvider';
+import { useStore } from '@/providers/StoreProvider'
+import { useTheme } from '@/providers/ThemeProvider';
 
 export default () => {
   const { state, dispatch } = useStore()
