@@ -1,15 +1,14 @@
 import React from 'react'
-import { useStore } from '@/providers/StoreProvider'
+import { connect } from 'react-redux'
 import { useTheme } from '@/providers/ThemeProvider';
 
-export default () => {
-  const { state, dispatch } = useStore()
+const Home = (props) => {
   const { changeTheme, theme } = useTheme()
-
+  const { count, dispatch } = props
   const _add = () => {
     dispatch({
-      type: 'a/asyncSetCount',
-      payload: state.a.count + 1
+      type: 'home/asyncSetCount',
+      payload: count + 1
     }).then((res) => {
       console.log(res)
     })
@@ -17,7 +16,7 @@ export default () => {
   return (
     <div style={{padding: '10px'}}>
       <input 
-        value={state.a.count} 
+        value={count} 
         style={{
           background: theme.bg,
           color: theme.color1,
@@ -55,3 +54,9 @@ export default () => {
     </div>
   )
 }
+
+export default connect(
+  ({ home }) => ({ 
+    count: home.count 
+  }),
+)(Home)
