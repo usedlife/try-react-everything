@@ -1,6 +1,8 @@
 import _models from './models'
+
 const models = {}
 const initialValue = {}
+
 _models.loading = {
   namespace: 'loading',
   state: {}, 
@@ -33,18 +35,19 @@ function reducer(state = initialValue, action) {
   }
 }
 
-const asyncDispatch = store => dispatch => async action => {
+const asyncDispatch = ({ dispatch, getState }) => next => async action => {
   try {
     const [namespace, methodName] = action.type.split('/')
     const method = models[namespace].effects[methodName]
-    const state = store.getState()
+    const state = getState()
     if (method) {
-      dispatch({ type: 'loading/CHANGE_LOADING', actionType: action.type, data: true })
+      next({ type: 'loading/CHANGE_LOADING', actionType: action.type, data: true })
       const result = await method(dispatch, state[namespace], action)
-      dispatch({ type: 'loading/CHANGE_LOADING', actionType: action.type, data: false })
+      next({ type: 'loading/CHANGE_LOADING', actionType: action.type, data: false })
       return Promise.resolve(result)
     } else {
-      dispatch(action)
+      next(action)
+      return action
     }
   } catch(e) {
     console.log("effect错误：", e)

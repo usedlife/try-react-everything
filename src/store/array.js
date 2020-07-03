@@ -1,4 +1,4 @@
-export default store => dispatch => action => 
+export default store => next => action => 
   Array.isArray(action)
-    ? action.map(dispatch)
-    : dispatch(action)
+    ? action.map(next)
+    : next(action)

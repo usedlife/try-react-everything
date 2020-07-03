@@ -1,10 +1,12 @@
-const { addWebpackAlias } = require('customize-cra')
+const { 
+  override,
+  addWebpackAlias,
+} = require('customize-cra')
 const path = require('path')
 
-module.exports = function override(config, env) {
+module.exports = override(
   //do stuff with the webpack config...
   addWebpackAlias({
-    "@": path.resolve(__dirname, 'src')
-  })(config)
-  return config;
-}
+    "@": path.resolve(__dirname, 'src'),
+  }),
+)

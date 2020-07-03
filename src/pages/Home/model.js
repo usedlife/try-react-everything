@@ -19,6 +19,10 @@ export default {
   effects: {
     async asyncSetCount(dispatch, state, action) {
       await delay(2000)
+      return dispatch({ type: 'home/asyncSetCount2', payload: state.count + 1 })
+    },
+    async asyncSetCount2(dispatch, state, action) {
+      await delay(2000)
       dispatch({ type: 'home/setCount', payload: state.count + 1 })
       return 200
     }

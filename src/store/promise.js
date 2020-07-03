@@ -2,7 +2,7 @@ function error(error) {
   throw error
 }
 
-export default store => dispatch => action => 
+export default store => next => action => 
   typeof action.then === 'function'
-    ? Promise.resolve(action).then(dispatch, error)
-    : dispatch(action)
+    ? Promise.resolve(action).then(next, error)
+    : next(action)
