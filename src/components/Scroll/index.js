@@ -13,6 +13,7 @@ const Scroll = forwardRef((props, ref) => {
     onScroll,
     pullDown,
     pullUp,
+
     ...rest 
   } = props
 
@@ -30,11 +31,40 @@ const Scroll = forwardRef((props, ref) => {
   }, [])
 
   useEffect(() => {
-    if (!bScroll || !onScroll) return 
-    bScroll.on('scroll', () => {
-      onScroll()
+    if(!bScroll || !onScroll) return;
+    bScroll.on('scroll', (scroll) => {
+      onScroll(scroll);
     })
-  }, [bScroll, onScroll])
+    return () => {
+      bScroll.off('scroll');
+    }
+  }, [onScroll, bScroll]);
+
+  useEffect(() => {
+    if(!bScroll || !pullUp) return;
+    bScroll.on('scrollEnd', () => {
+      // 判断是否滑动到了底部
+      if(bScroll.y <= bScroll.maxScrollY + 100){
+        pullUp();
+      }
+    });
+    return () => {
+      bScroll.off('scrollEnd');
+    }
+  }, [pullUp, bScroll]);
+
+  useEffect(() => {
+    if(!bScroll || !pullDown) return;
+    bScroll.on('touchEnd', (pos) => {
+      // 判断用户的下拉动作
+      if(pos.y > 50) {
+        pullDown();
+      }
+    });
+    return () => {
+      bScroll.off('touchEnd');
+    }
+  }, [pullDown, bScroll]);
 
   useImperativeHandle(ref, () => ({
     refresh() {
@@ -53,7 +83,10 @@ const Scroll = forwardRef((props, ref) => {
 })
 
 Scroll.propTypes = {
-  direction: PropTypes.oneOf(['vertical', 'horizontal', 'free'])
+  direction: PropTypes.oneOf(['vertical', 'horizontal', 'free']),
+  onScroll: PropTypes.func,
+  pullDown: PropTypes.func,
+  pullUp: PropTypes.func,
 }
 
 Scroll.defaultProps = {

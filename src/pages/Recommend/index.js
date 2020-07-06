@@ -4,9 +4,24 @@ import { Scroll } from '@/components'
 import styles from './styles.module.scss'
 
 export default () => {
+
+  const _onScroll = (...args) => {
+    console.log(args)
+  }
+  const _pullDown = (...args) => {
+    console.log(args)
+  }
+  const _pullUp = (...args) => {
+    console.log(args)
+  }
+
   return (
     <div className={styles.wrapper}>
-      <Scroll>
+      <Scroll
+        // onScroll={_onScroll}
+        pullDown={_pullDown}
+        pullUp={_pullUp}
+      >
         <h1>better-scroll 配置项</h1>
         <p>BetterScroll 支持很多参数配置，可以在初始化的时候传入第二个参数，比如：</p>
         <code>{`
