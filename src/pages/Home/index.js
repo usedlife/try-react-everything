@@ -14,16 +14,16 @@ const Home = (props) => {
     })
   }
   return (
-    <div style={{padding: '10px'}}>
+    <div style={{padding: '.1rem'}}>
       <input 
         value={count} 
         style={{
           background: theme.bg,
           color: theme.color1,
-          padding: '4px 10px',
-          border: `1px solid ${theme.border}`,
+          padding: '.04rem .1rem',
+          border: `.01rem solid ${theme.border}`,
           outline: 'none',
-          borderRadius: '4px'
+          borderRadius: '.04rem'
         }}
       />
       <button 
@@ -31,11 +31,11 @@ const Home = (props) => {
         style={{
           color: theme.bg, 
           background: theme.accent, 
-          borderRadius: '4px',
+          borderRadius: '.04rem',
           outline: 'none',
           border: 0,
-          padding: '4px 8px',
-          marginLeft: '10px'
+          padding: '.04rem .08rem',
+          marginLeft: '.1rem'
         }}
       >+</button>
       <div>
@@ -44,10 +44,10 @@ const Home = (props) => {
           style={{
             color: theme.bg, 
             background: theme.accent, 
-            borderRadius: '4px',
+            borderRadius: '.04rem',
             outline: 'none',
             border: 0,
-            padding: '4px 8px',
+            padding: '.04rem .08rem',
           }}
         >更换主题</button>
       </div>

@@ -27,6 +27,10 @@ export default [
         component: suspenseComponent(lazy(() => import('@/pages/Home')))
       },
       {
+        path: '/news',
+        component: suspenseComponent(lazy(() => import('@/pages/News')))
+      },
+      {
         path: '/recommend',
         component: suspenseComponent(lazy(() => import('@/pages/Recommend')))
       },
